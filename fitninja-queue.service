@@ -1,0 +1,17 @@
+# /etc/systemd/system/fitninja-queue.service
+# Enable: sudo systemctl daemon-reload && sudo systemctl enable --now fitninja-queue
+
+[Unit]
+Description=FitNinja AI Production Queue Worker
+After=network.target mysql.service redis-server.service
+
+[Service]
+TaskMax=infinity
+User=root
+Group=root
+Restart=always
+RestartSec=5
+ExecStart=/usr/bin/php /var/www/fitninja-new/artisan queue:work redis --sleep=3 --tries=3 --max-time=3600
+
+[Install]
+WantedBy=multi-user.target

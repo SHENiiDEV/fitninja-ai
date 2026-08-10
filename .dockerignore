@@ -1,0 +1,13 @@
+vendor/
+node_modules/
+.git/
+.env
+.env.backup
+docker/mysql_data/
+storage/logs/
+storage/framework/cache/
+storage/framework/sessions/
+storage/framework/views/
+*.log
+.idea/
+.vscode/
