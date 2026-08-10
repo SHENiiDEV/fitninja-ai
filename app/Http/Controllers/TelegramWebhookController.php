@@ -34,10 +34,27 @@ class TelegramWebhookController extends Controller
             $telegramId = (string) ($message['from']['id'] ?? $chatId);
             $telegramUsername = $message['from']['username'] ?? null;
             $firstName = $message['from']['first_name'] ?? 'User';
-            $text = trim($message['text'] ?? '');
+            $text = trim($message['text'] ?? $message['caption'] ?? '');
+            $voice = $message['voice'] ?? null;
+            $photo = $message['photo'] ?? null;
 
-            if (empty($text)) {
+            if (empty($text) && ! $voice && ! $photo) {
                 return response()->json(['ok' => true]);
+            }
+
+            // Extract voice note download URL
+            if ($voice) {
+                $fileId = $voice['file_id'];
+                $voiceUrl = $telegram->getFileUrl($fileId);
+                $text = "Voice message audio meal log" . ($voiceUrl ? " [Voice File: {$voiceUrl}] font duration: " . ($voice['duration'] ?? 0) . "s" : "");
+            }
+
+            // Extract food photo download URL
+            if ($photo && is_array($photo)) {
+                $largestPhoto = end($photo);
+                $fileId = $largestPhoto['file_id'];
+                $photoUrl = $telegram->getFileUrl($fileId);
+                $text = "Food photo recognition submission" . ($photoUrl ? " [Photo File: {$photoUrl}]" : "");
             }
 
             // Handle commands

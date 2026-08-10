@@ -56,6 +56,7 @@ CRITICAL RULES:
 3. Round calories to tens (e.g. 350 instead of 347). Round macros to whole grams.
 4. Use standard nutritional average values for typical portion sizes.
 5. If user writes non-fitness content, set calories to 0 and guide them back to fitness/nutrition.
+6. If the input contains a voice message or photo submission tag, extract the meal or exercise details, estimate the portion/macros, and reply with encouragement.
 PROMPT;
     }
 
