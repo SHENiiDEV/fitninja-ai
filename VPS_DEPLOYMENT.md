@@ -1,6 +1,6 @@
-# 🚀 FitNinja AI — Ubuntu VPS Production Deployment Guide
+# 🚀 FitNinja AI — Production Deployment Guide (`fitninja.co.uk`)
 
-This guide covers deploying **FitNinja AI** to your Ubuntu VPS at `/var/www/customAI/fitninja-ai` with PHP 8.4-FPM, Nginx, Node.js 22, npm, and Composer.
+This guide covers deploying **FitNinja AI** to your Ubuntu VPS at `/var/www/customAI/fitninja-ai` for domain **`fitninja.co.uk`** / **`www.fitninja.co.uk`** with PHP 8.4-FPM, Nginx, Node.js 22, npm, and Composer.
 
 ---
 
@@ -35,7 +35,7 @@ Update your `.env` settings:
 APP_NAME="FitNinja AI"
 APP_ENV=production
 APP_DEBUG=false
-APP_URL=https://your-domain.com
+APP_URL=https://fitninja.co.uk
 
 # Database Connection (MySQL)
 DB_CONNECTION=mysql
@@ -56,12 +56,12 @@ DEEPSEEK_API_KEY=your_deepseek_api_key
 DEEPSEEK_API_URL=https://api.deepseek.com/chat/completions
 
 # Telegram Bot
-TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+TELEGRAM_BOT_TOKEN=8657848817:AAGrHCSg0YGBsMAvOD7UD1lPKBXc_-RfUnM
 TELEGRAM_BOT_USERNAME=fitninjaAI_bot
-TELEGRAM_WEBHOOK_URL=https://your-domain.com/api/telegram/webhook
+TELEGRAM_WEBHOOK_URL=https://fitninja.co.uk/api/telegram/webhook
 ```
 
-Generate the key:
+Generate key:
 ```bash
 php artisan key:generate
 ```
@@ -76,61 +76,43 @@ Execute the deployment script:
 ./deploy.sh
 ```
 
-Or manually:
-```bash
-composer install --no-dev --optimize-autoloader
-npm ci
-npm run build
-php artisan migrate --force
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-```
-
 ---
 
 ## 🌐 Step 4: Configure Nginx & SSL (Certbot)
 
-Copy the Nginx configuration:
+Copy Nginx configuration:
 
 ```bash
 sudo cp fitninja-nginx.conf /etc/nginx/sites-available/fitninja.conf
-sudo nano /etc/nginx/sites-available/fitninja.conf
-```
-*Verify `server_name` is your domain and `root` is `/var/www/customAI/fitninja-ai/public`.*
-
-Enable the site and reload Nginx:
-```bash
-sudo ln -s /etc/nginx/sites-available/fitninja.conf /etc/nginx/sites-enabled/
+sudo ln -sf /etc/nginx/sites-available/fitninja.conf /etc/nginx/sites-enabled/
+sudo rm -f /etc/nginx/sites-enabled/default
 sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-Install SSL Certificate (Let's Encrypt):
+Install Let's Encrypt Free SSL Certificate:
 ```bash
-sudo apt update
-sudo apt install certbot python3-certbot-nginx -y
-sudo certbot --nginx -d your-domain.com
+sudo certbot --nginx -d fitninja.co.uk -d www.fitninja.co.uk
 ```
 
 ---
 
 ## 🔄 Step 5: Setup Systemd Queue Worker
 
-Enable the background queue worker for Telegram AI message processing:
+Enable background queue worker for Telegram AI message, voice note, and photo processing:
 
 ```bash
 sudo cp fitninja-queue.service /etc/systemd/system/fitninja-queue.service
 sudo systemctl daemon-reload
 sudo systemctl enable --now fitninja-queue
-sudo systemctl status fitninja-queue
+sudo systemctl restart fitninja-queue
 ```
 
 ---
 
 ## 🤖 Step 6: Set Telegram Webhook
 
-Register your production SSL domain webhook with Telegram:
+Register production SSL domain webhook with Telegram API:
 
 ```bash
 php artisan telegram:set-webhook
@@ -138,7 +120,7 @@ php artisan telegram:set-webhook
 
 Verify Telegram Webhook status:
 ```bash
-curl -s "https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getWebhookInfo"
+curl -s "https://api.telegram.org/bot8657848817:AAGrHCSg0YGBsMAvOD7UD1lPKBXc_-RfUnM/getWebhookInfo"
 ```
 
 ---
@@ -149,5 +131,7 @@ Whenever you push code updates to git, simply run on VPS:
 
 ```bash
 cd /var/www/customAI/fitninja-ai
+git pull
 ./deploy.sh
+sudo systemctl restart fitninja-queue
 ```
