@@ -4,34 +4,8 @@ import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { useEffect, useRef } from 'react';
 
-function TelegramLoginButton({ botUsername }) {
-    const containerRef = useRef(null);
-
-    useEffect(() => {
-        if (!botUsername || !containerRef.current) return;
-
-        containerRef.current.innerHTML = '';
-
-        const script = document.createElement('script');
-        script.src = 'https://telegram.org/js/telegram-widget.js?22';
-        script.async = true;
-        script.setAttribute('data-telegram-login', botUsername);
-        script.setAttribute('data-size', 'large');
-        script.setAttribute('data-radius', '12');
-        script.setAttribute('data-auth-url', route('telegram.login.callback'));
-        script.setAttribute('data-request-access', 'write');
-
-        containerRef.current.appendChild(script);
-    }, [botUsername]);
-
-    if (!botUsername) return null;
-
-    return <div ref={containerRef} className="flex justify-center cursor-pointer" />;
-}
-
-export default function Login({ status, canResetPassword, telegramBotUsername }) {
+export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
         password: '',
@@ -61,28 +35,6 @@ export default function Login({ status, canResetPassword, telegramBotUsername })
                 </div>
             )}
 
-            {/* Telegram 1-Click Login Widget */}
-            {telegramBotUsername && (
-                <div className="mb-6">
-                    <div className="mb-3 text-center">
-                        <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
-                            Instant Telegram Login
-                        </span>
-                    </div>
-                    <TelegramLoginButton botUsername={telegramBotUsername} />
-                    <div className="relative mt-6">
-                        <div className="absolute inset-0 flex items-center">
-                            <div className="w-full border-t border-slate-800" />
-                        </div>
-                        <div className="relative flex justify-center text-xs">
-                            <span className="bg-slate-900 px-3 text-slate-400 font-medium">
-                                Or continue with email
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            )}
-
             <form onSubmit={submit} className="space-y-4">
                 <div>
                     <InputLabel htmlFor="email" value="Email Address" className="text-slate-300 font-medium text-xs" />
@@ -95,7 +47,7 @@ export default function Login({ status, canResetPassword, telegramBotUsername })
                             className="block w-full rounded-xl border-slate-800 bg-slate-950/80 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
                             placeholder="name@example.com"
                             autoComplete="username"
-                            isFocused={!telegramBotUsername}
+                            isFocused={true}
                             onChange={(e) => setData('email', e.target.value)}
                         />
                     </div>
