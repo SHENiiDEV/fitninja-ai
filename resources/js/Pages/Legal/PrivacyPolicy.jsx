@@ -25,27 +25,27 @@ export default function PrivacyPolicy() {
 
                 <main className="mx-auto max-w-4xl px-6 py-16">
                     <h1 className="text-4xl font-extrabold text-white">Privacy Policy</h1>
-                    <p className="mt-2 text-xs text-slate-400">Last updated: August 6, 2026</p>
+                    <p className="mt-2 text-xs text-slate-400">Last updated: August 10, 2026</p>
 
                     <div className="mt-8 space-y-6 text-sm text-slate-300 leading-relaxed font-light">
                         <section className="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
                             <h2 className="text-lg font-bold text-white">1. Information We Collect</h2>
                             <p>
-                                At FitNinja AI, we collect minimal necessary information to deliver personal AI nutrition analysis and fitness coaching. This includes your Telegram user ID, username, contact email, nutrition logs, biometric targets (height, weight, calorie goals), and payment billing records.
+                                At FitNinja AI, we collect minimal necessary information to deliver personal high-level AI nutrition analysis and fitness coaching. This includes your Telegram user ID, username, contact email, nutrition logs, voice notes, meal photo submissions, biometric targets (height, weight, calorie goals), and payment billing records.
                             </p>
                         </section>
 
                         <section className="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
                             <h2 className="text-lg font-bold text-white">2. How We Use Your Data</h2>
                             <p>
-                                Your data is exclusively used to provide real-time AI meal breakdowns, compute daily macro nutrients (protein, fats, carbs), calculate BMR/TDEE targets, and credit your purchased AI tokens.
+                                Your data is exclusively used to provide real-time AI meal breakdowns, compute daily macro nutrients (protein, fats, carbs), calculate BMR/TDEE targets, process voice notes and meal photos, and credit your purchased AI tokens.
                             </p>
                         </section>
 
                         <section className="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
-                            <h2 className="text-lg font-bold text-white">3. Data Security & Encryption</h2>
+                            <h2 className="text-lg font-bold text-white">3. Data Security & Media Privacy</h2>
                             <p>
-                                All biometric and meal log data is stored in encrypted databases. We do not sell, lease, or distribute your personal health data to third-party advertisers.
+                                All biometric, text, voice, and photo meal log data is stored in encrypted databases. We do not sell, lease, or distribute your personal health data or media to third-party advertisers.
                             </p>
                         </section>
 
