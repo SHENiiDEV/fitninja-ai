@@ -10,7 +10,7 @@ use Inertia\Response;
 class BillingController extends Controller
 {
     /**
-     * Display high-ticket FOREX executive token credit store (€1.00 = 1 Token).
+     * Display high-ticket fitness AI token credit store (€1.00 = 1 Token).
      */
     public function index(Request $request): Response
     {
@@ -21,13 +21,13 @@ class BillingController extends Controller
             'ratePerToken' => 1.00, // €1.00 = 1 Token
             'currencySymbol' => '€',
             'presetPackages' => [
-                ['tokens' => 100, 'price' => 100.00, 'popular' => false, 'name' => 'Executive Trader'],
-                ['tokens' => 500, 'price' => 500.00, 'popular' => true, 'name' => 'FOREX VIP Trader'],
-                ['tokens' => 1500, 'price' => 1500.00, 'popular' => false, 'name' => 'Institutional Hedge Fund'],
+                ['tokens' => 100, 'price' => 100.00, 'popular' => false, 'name' => 'Fitness Foundations'],
+                ['tokens' => 500, 'price' => 500.00, 'popular' => true, 'name' => 'Pro Transformation Suite'],
+                ['tokens' => 1500, 'price' => 1500.00, 'popular' => false, 'name' => 'Elite Athlete Performance'],
             ],
             'bankDetails' => [
                 'bankName' => 'Barclays Private / Revolut Business Europe',
-                'accountName' => 'FitNinja AI Executive Performance Ltd',
+                'accountName' => 'FitNinja AI Performance Ltd',
                 'sortCode' => '20-45-89',
                 'accountNumber' => '83920147',
                 'iban' => 'EU89 REVO 2045 8983 9201 47',

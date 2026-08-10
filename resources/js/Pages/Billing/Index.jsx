@@ -49,9 +49,9 @@ export default function Billing({ tokens, ratePerToken = 1.00, presetPackages, b
             header={
                 <div>
                     <h2 className="text-2xl font-black text-white tracking-tight">
-                        FOREX Executive AI Credit Suite
+                        Executive AI Performance Suite
                     </h2>
-                    <p className="text-xs text-slate-400">High-Performance Neural Coaching for Professional Traders & Executives (€1.00 = 1 Token)</p>
+                    <p className="text-xs text-slate-400">High-Performance Neural Fitness & Executive Nutrition (€1.00 = 1 Token)</p>
                 </div>
             }
         >
@@ -125,7 +125,7 @@ export default function Billing({ tokens, ratePerToken = 1.00, presetPackages, b
 
                                 {/* Presets Shortcuts */}
                                 <div>
-                                    <span className="text-xs text-slate-400 block mb-2 font-medium">Trader Executive Packages:</span>
+                                    <span className="text-xs text-slate-400 block mb-2 font-medium">Executive Coaching Packages:</span>
                                     <div className="flex flex-wrap gap-3">
                                         {presetPackages.map((pkg) => (
                                             <button

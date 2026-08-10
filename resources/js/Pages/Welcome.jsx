@@ -252,15 +252,15 @@ export default function Welcome({ auth }) {
                 {/* Pricing Section - Pay As You Go Tokens */}
                 <section id="pricing" className="relative z-10 mx-auto max-w-7xl px-6 py-24 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto">
-                        <h2 className="text-3xl font-extrabold text-white sm:text-4xl">FOREX Executive AI Credit Suites</h2>
-                        <p className="mt-4 text-slate-400">High-Performance Neural Coaching for Professional Traders, Investors & High-Net-Worth Individuals (€1.00 = 1 AI Token).</p>
+                        <h2 className="text-3xl font-extrabold text-white sm:text-4xl">High-Performance AI Coaching Suites</h2>
+                        <p className="mt-4 text-slate-400">High-Ticket Neural Nutrition & Fitness Coaching for Executives & Athletes (€1.00 = 1 AI Token).</p>
                     </div>
 
                     <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3 max-w-6xl mx-auto">
-                        {/* Executive Trader */}
+                        {/* Fitness Foundations */}
                         <div className="rounded-3xl border border-slate-800 bg-slate-900/50 p-8 flex flex-col justify-between">
                             <div>
-                                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Executive Trader</span>
+                                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Foundations</span>
                                 <h3 className="mt-2 text-2xl font-bold text-white">100 Tokens</h3>
                                 <p className="mt-1 text-4xl font-extrabold text-white">€100.00</p>
                                 <p className="mt-1 text-xs text-slate-400">€1.00 per AI interaction</p>
@@ -278,46 +278,46 @@ export default function Welcome({ auth }) {
                             </Link>
                         </div>
 
-                        {/* FOREX VIP Trader */}
+                        {/* Pro Transformation Suite */}
                         <div className="relative rounded-3xl border-2 border-emerald-500 bg-gradient-to-b from-slate-900 to-slate-950 p-8 flex flex-col justify-between shadow-2xl shadow-emerald-500/10">
                             <span className="absolute -top-3 right-8 rounded-full bg-emerald-500 px-3 py-1 text-[11px] font-extrabold uppercase text-slate-950">Most Popular (Core Tier)</span>
                             <div>
-                                <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Executive Best Value</span>
+                                <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Pro Transformation</span>
                                 <h3 className="mt-2 text-2xl font-bold text-white">500 Tokens</h3>
                                 <p className="mt-1 text-4xl font-extrabold text-white">€500.00</p>
                                 <p className="mt-1 text-xs text-emerald-400">€1.00 per AI interaction</p>
                                 <ul className="mt-6 space-y-3 text-sm text-slate-200">
                                     <li className="flex items-center gap-2 text-emerald-400">✓ 500 High-Performance AI Interactions</li>
                                     <li className="flex items-center gap-2 text-emerald-400">✓ VIP Priority Neural Engine Access</li>
-                                    <li className="flex items-center gap-2 text-emerald-400">✓ Card & Corporate SWIFT Bank Wire</li>
+                                    <li className="flex items-center gap-2 text-emerald-400">✓ Card & SWIFT Bank Wire Authorization</li>
                                 </ul>
                             </div>
                             <Link
                                 href={route('login')}
                                 className="cursor-pointer mt-8 block rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 py-3.5 text-center text-sm font-bold text-white shadow-lg shadow-emerald-500/25 transition-transform hover:scale-105"
                             >
-                                Order €500 Executive Suite
+                                Order €500 Pro Suite
                             </Link>
                         </div>
 
-                        {/* Institutional Hedge Fund */}
+                        {/* Elite Athlete Performance */}
                         <div className="rounded-3xl border border-slate-800 bg-slate-900/50 p-8 flex flex-col justify-between">
                             <div>
-                                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Institutional</span>
+                                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Elite Performance</span>
                                 <h3 className="mt-2 text-2xl font-bold text-white">1,500 Tokens</h3>
                                 <p className="mt-1 text-4xl font-extrabold text-white">€1,500.00</p>
                                 <p className="mt-1 text-xs text-slate-400">€1.00 per AI interaction</p>
                                 <ul className="mt-6 space-y-3 text-sm text-slate-300">
                                     <li className="flex items-center gap-2">✓ 1,500 High-Performance AI Interactions</li>
                                     <li className="flex items-center gap-2">✓ Unlimited Dashboard Analytics</li>
-                                    <li className="flex items-center gap-2">✓ Dedicated Account Manager & VIP Line</li>
+                                    <li className="flex items-center gap-2">✓ Dedicated Account Manager & Priority Line</li>
                                 </ul>
                             </div>
                             <Link
                                 href={route('login')}
                                 className="cursor-pointer mt-8 block rounded-2xl border border-slate-700 bg-slate-800 py-3.5 text-center text-sm font-bold text-white transition-colors hover:bg-slate-700"
                             >
-                                Order €1,500 Institutional Pack
+                                Order €1,500 Elite Pack
                             </Link>
                         </div>
                     </div>

@@ -76,7 +76,7 @@ export default function TermsOfService() {
                         <section className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8 space-y-3 backdrop-blur-xl shadow-xl">
                             <h2 className="text-xl font-bold text-white">4. High-Value Transactions (€500+ Core Tier) & Chargeback Policy</h2>
                             <p>
-                                For high-ticket orders (€500 FOREX VIP Trader & €1,500 Institutional suites), all corporate card payments and SWIFT / IBAN wire transfers are final once AI credit tokens are credited. In accordance with digital software licensing regulations, consumed AI tokens are non-refundable. Fraudulent chargeback disputes will result in immediate service suspension and legal enforcement.
+                                For high-ticket orders (€500 Pro Transformation Suite & €1,500 Elite Performance suites), all corporate card payments and SWIFT / IBAN wire transfers are final once AI credit tokens are credited. In accordance with digital software licensing regulations, consumed AI tokens are non-refundable. Fraudulent chargeback disputes will result in immediate service suspension and legal enforcement.
                             </p>
                         </section>
 
