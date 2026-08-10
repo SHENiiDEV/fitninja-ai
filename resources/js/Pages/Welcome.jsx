@@ -91,17 +91,12 @@ export default function Welcome({ auth }) {
                         </p>
 
                         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                            <a
-                                href="https://t.me/fitninjaAI_bot"
-                                target="_blank"
-                                rel="noreferrer"
+                            <Link
+                                href={auth?.user ? route('dashboard') : route('register')}
                                 className="cursor-pointer flex items-center gap-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 px-8 py-4 text-base font-bold text-white shadow-xl shadow-emerald-500/30 transition-all hover:scale-105 hover:shadow-emerald-500/50"
                             >
-                                <svg className="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .54-1.43.53-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.37-.49 1.02-.75 3.99-1.74 6.66-2.89 8.01-3.45 3.81-1.59 4.6-.1.87 4.6.14.88z" />
-                                </svg>
-                                Start in Telegram
-                            </a>
+                                Get Started Free →
+                            </Link>
                             <Link
                                 href={auth?.user ? route('dashboard') : route('login')}
                                 className="cursor-pointer flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-900/90 px-8 py-4 text-base font-bold text-slate-200 backdrop-blur-xl transition-all hover:border-slate-700 hover:bg-slate-800 hover:text-white"
@@ -109,7 +104,7 @@ export default function Welcome({ auth }) {
                                 <svg className="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                                 </svg>
-                                Launch Dashboard
+                                Launch Web Dashboard
                             </Link>
                         </div>
                     </div>

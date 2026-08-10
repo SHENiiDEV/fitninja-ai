@@ -40,7 +40,7 @@ class TelegramWebhookController extends Controller
                 return response()->json(['ok' => true]);
             }
 
-            // Commands
+            // Handle commands
             if (str_starts_with($text, '/start')) {
                 $this->handleStartCommand($chatId, $telegramId, $telegramUsername, $firstName, $text, $telegram);
                 return response()->json(['ok' => true]);
@@ -52,7 +52,7 @@ class TelegramWebhookController extends Controller
             }
 
             if (str_starts_with($text, '/status')) {
-                $this->handleStatusCommand($chatId, $telegramId, $telegramUsername, $firstName, $telegram);
+                $this->handleStatusCommand($chatId, $telegramId, $firstName, $telegram);
                 return response()->json(['ok' => true]);
             }
 
@@ -61,8 +61,25 @@ class TelegramWebhookController extends Controller
                 return response()->json(['ok' => true]);
             }
 
-            // Find or create user by telegram_id
-            $user = $this->findOrCreateUser($telegramId, $telegramUsername, $firstName);
+            // Find existing linked user
+            $user = User::where('telegram_id', $telegramId)->first();
+
+            if (! $user) {
+                // If user is not linked to a web account yet
+                $registerUrl = config('app.url') . '/register';
+                $unlinkedMessage = "⚠️ Account Not Linked Yet\n\n"
+                    . "To log your meals and track calories & macros, please create an account on our website first:\n\n"
+                    . "🌐 Register Account: {$registerUrl}\n\n"
+                    . "After logging in, click 'Connect Telegram Now' on your web dashboard to link your profile!";
+
+                $telegram->sendMessage($chatId, $unlinkedMessage);
+                return response()->json(['ok' => true]);
+            }
+
+            // Update username if changed
+            if ($telegramUsername && $user->telegram_username !== $telegramUsername) {
+                $user->update(['telegram_username' => Str::limit($telegramUsername, 200, '')]);
+            }
 
             // Dispatch job to queue for async processing
             ProcessTelegramMessage::dispatch($chatId, $text, $user->id);
@@ -79,7 +96,7 @@ class TelegramWebhookController extends Controller
     }
 
     /**
-     * Handle /start command, including deep linking parameters.
+     * Handle /start command with or without deep linking connect code.
      */
     protected function handleStartCommand(
         string $chatId,
@@ -105,31 +122,57 @@ class TelegramWebhookController extends Controller
                     'telegram_username' => $telegramUsername ? Str::limit($telegramUsername, 200, '') : null,
                 ]);
 
-                $successMessage = "🎉 Account Linked Successfully!\n\n"
-                    . "Your Telegram account is now connected to your web profile: {$webUser->email}\n\n"
-                    . "🪙 Tokens Balance: {$webUser->credits}\n\n"
-                    . "You can now log meals & workouts here in Telegram, and your analytics will instantly reflect on your web dashboard:\n"
+                $successMessage = "🎉 Account Connected Successfully!\n\n"
+                    . "Your Telegram account is now linked to your web profile: {$webUser->email}\n\n"
+                    . "🪙 Available Tokens Balance: {$webUser->credits} Tokens\n\n"
+                    . "💡 How to use FitNinja AI:\n"
+                    . "Simply type what you ate or your workout in this chat, and the AI will calculate calories, protein, fats, and carbs automatically!\n\n"
+                    . "Example: \"Had 3 poached eggs, wholewheat toast and black coffee\"\n\n"
+                    . "📊 View Web Dashboard & Trends:\n"
                     . config('app.url') . "/dashboard";
 
                 $telegram->sendMessage($chatId, $successMessage);
                 return;
             }
+
+            // Invalid or expired payload
+            $invalidMessage = "⚠️ Invalid Connection Code\n\n"
+                . "The connection code was invalid or has expired.\n"
+                . "Please log in to your web account and click 'Connect Telegram Now' on your dashboard:\n"
+                . config('app.url') . "/dashboard";
+
+            $telegram->sendMessage($chatId, $invalidMessage);
+            return;
         }
 
-        $user = $this->findOrCreateUser($telegramId, $telegramUsername, $firstName);
+        // Check if user is already linked
+        $existingUser = User::where('telegram_id', $telegramId)->first();
 
-        $welcomeMessage = "👋 Hello, {$firstName}!\n\n"
-            . "🥷 I am FitNinja AI — your personal AI nutritionist & fitness coach.\n\n"
-            . "Simply type what you ate or your workout, and I'll calculate calories instantly!\n\n"
-            . "Example: \"Had 2 eggs and avocado toast for breakfast\"\n\n"
-            . "🪙 Tokens Remaining: {$user->credits}\n\n"
-            . "📌 Commands:\n"
-            . "/buy — Buy AI Tokens\n"
-            . "/status — Check Token Balance\n"
-            . "/help — Assistance\n\n"
-            . "📊 Web Dashboard: " . config('app.url');
+        if ($existingUser) {
+            $welcomeBack = "👋 Welcome back, {$firstName}!\n\n"
+                . "🥷 FitNinja AI is ready. Log your meals & workouts naturally:\n"
+                . "Example: \"Had 2 eggs, avocado toast, and 5km run\"\n\n"
+                . "🪙 Available Tokens: {$existingUser->credits}\n\n"
+                . "📊 Web Dashboard: " . config('app.url') . "/dashboard";
 
-        $telegram->sendMessage($chatId, $welcomeMessage);
+            $telegram->sendMessage($chatId, $welcomeBack);
+            return;
+        }
+
+        // Standard /start without token for unregistered visitors
+        $registerUrl = config('app.url') . '/register';
+        $loginUrl = config('app.url') . '/login';
+
+        $unlinkedStart = "👋 Welcome to FitNinja AI!\n\n"
+            . "To start logging meals and tracking calories & macro nutrients, please create an account on our website first:\n\n"
+            . "🌐 Register Account: {$registerUrl}\n"
+            . "🔑 Log In: {$loginUrl}\n\n"
+            . "📌 How to Link Your Profile:\n"
+            . "1. Register or Log In on our website.\n"
+            . "2. Click 'Connect Telegram Now →' on your web dashboard.\n"
+            . "3. You will be automatically linked!";
+
+        $telegram->sendMessage($chatId, $unlinkedStart);
     }
 
     /**
@@ -152,16 +195,21 @@ class TelegramWebhookController extends Controller
     protected function handleStatusCommand(
         string $chatId,
         string $telegramId,
-        ?string $telegramUsername,
         string $firstName,
         TelegramBotService $telegram,
     ): void {
-        $user = $this->findOrCreateUser($telegramId, $telegramUsername, $firstName);
+        $user = User::where('telegram_id', $telegramId)->first();
 
-        $message = "👤 Profile: {$firstName}\n"
+        if (! $user) {
+            $registerUrl = config('app.url') . '/register';
+            $telegram->sendMessage($chatId, "⚠️ Please register an account on our website first:\n{$registerUrl}");
+            return;
+        }
+
+        $message = "👤 Profile: {$user->name} ({$user->email})\n"
             . "🪙 Available Tokens: {$user->credits}\n\n"
             . "💳 Buy Tokens: " . config('app.url') . "/billing\n"
-            . "📊 Web Dashboard: " . config('app.url');
+            . "📊 Web Dashboard: " . config('app.url') . "/dashboard";
 
         $telegram->sendMessage($chatId, $message);
     }
@@ -171,32 +219,14 @@ class TelegramWebhookController extends Controller
      */
     protected function handleHelpCommand(string $chatId, TelegramBotService $telegram): void
     {
-        $message = "🥷 FitNinja AI — Help & Commands:\n\n"
+        $message = "🥷 FitNinja AI — Help & Instructions:\n\n"
             . "🔹 Send any food description (e.g. \"3 poached eggs and black coffee\")\n"
             . "🔹 Mention workouts (e.g. \"Ran 5km in 25 mins\") to subtract burned calories\n"
             . "🔹 /buy — Top up AI token balance\n"
             . "🔹 /status — Check remaining tokens\n"
-            . "🔹 /start — Restart bot\n\n"
-            . "🌐 Web Dashboard: " . config('app.url');
+            . "🔹 /start — Connection & status guide\n\n"
+            . "🌐 Web Dashboard: " . config('app.url') . "/dashboard";
 
         $telegram->sendMessage($chatId, $message);
-    }
-
-    /**
-     * Find existing user by telegram_id or create a new one with initial 10 gift tokens.
-     */
-    protected function findOrCreateUser(string $telegramId, ?string $telegramUsername, string $firstName): User
-    {
-        return User::firstOrCreate(
-            ['telegram_id' => $telegramId],
-            [
-                'name' => $firstName,
-                'email' => "tg_{$telegramId}@fitninja.local",
-                'password' => bcrypt(Str::random(32)),
-                'telegram_username' => $telegramUsername ? Str::limit($telegramUsername, 200, '') : null,
-                'subscription_status' => 'free',
-                'credits' => 10, // 10 initial gift tokens for new users
-            ]
-        );
     }
 }
