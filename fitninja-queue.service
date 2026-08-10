@@ -11,7 +11,7 @@ User=root
 Group=root
 Restart=always
 RestartSec=5
-ExecStart=/usr/bin/php /var/www/fitninja-new/artisan queue:work redis --sleep=3 --tries=3 --max-time=3600
+ExecStart=/usr/bin/php /var/www/customAI/fitninja-ai/artisan queue:work redis --sleep=3 --tries=3 --max-time=3600
 
 [Install]
 WantedBy=multi-user.target

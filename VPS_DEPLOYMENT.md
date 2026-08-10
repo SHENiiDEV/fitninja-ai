@@ -1,17 +1,18 @@
 # 🚀 FitNinja AI — Ubuntu VPS Production Deployment Guide
 
-This guide covers deploying **FitNinja AI** to your Ubuntu VPS with PHP 8.4-FPM, Nginx, Node.js 22, npm, and Composer.
+This guide covers deploying **FitNinja AI** to your Ubuntu VPS at `/var/www/customAI/fitninja-ai` with PHP 8.4-FPM, Nginx, Node.js 22, npm, and Composer.
 
 ---
 
 ## 📋 Step 1: Clone Project & Set Permissions
 
-On your VPS terminal (e.g. in `/var/www/`):
+On your VPS terminal:
 
 ```bash
-cd /var/www
-git clone <your-repository-url> fitninja-new
-cd fitninja-new
+mkdir -p /var/www/customAI
+cd /var/www/customAI
+git clone https://github.com/SHENiiDEV/fitninja-ai.git
+cd fitninja-ai
 
 # Set proper ownership and permissions for Laravel storage & bootstrap/cache
 sudo chown -R www-data:www-data storage bootstrap/cache
@@ -96,7 +97,7 @@ Copy the Nginx configuration:
 sudo cp fitninja-nginx.conf /etc/nginx/sites-available/fitninja.conf
 sudo nano /etc/nginx/sites-available/fitninja.conf
 ```
-*Change `server_name` to your domain and `root` to `/var/www/fitninja-new/public`.*
+*Verify `server_name` is your domain and `root` is `/var/www/customAI/fitninja-ai/public`.*
 
 Enable the site and reload Nginx:
 ```bash
@@ -120,7 +121,6 @@ Enable the background queue worker for Telegram AI message processing:
 
 ```bash
 sudo cp fitninja-queue.service /etc/systemd/system/fitninja-queue.service
-sudo nano /etc/systemd/system/fitninja-queue.service  # Verify paths
 sudo systemctl daemon-reload
 sudo systemctl enable --now fitninja-queue
 sudo systemctl status fitninja-queue
@@ -145,8 +145,9 @@ curl -s "https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getWebhookInfo"
 
 ## 🚀 Step 7: Future Updates (1-Click Deployment)
 
-Whenever you push code updates to git, simply run:
+Whenever you push code updates to git, simply run on VPS:
 
 ```bash
+cd /var/www/customAI/fitninja-ai
 ./deploy.sh
 ```
