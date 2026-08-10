@@ -118,4 +118,22 @@ class TelegramBotService
 
         Http::post("{$this->baseUrl}/answerPreCheckoutQuery", $payload);
     }
+
+    /**
+     * Get direct download URL for a Telegram file (photo, voice note).
+     */
+    public function getFileUrl(string $fileId): ?string
+    {
+        $token = config('services.telegram.bot_token');
+        $response = Http::get("{$this->baseUrl}/getFile", ['file_id' => $fileId]);
+
+        if ($response->successful()) {
+            $filePath = $response->json('result.file_path');
+            if ($filePath) {
+                return "https://api.telegram.org/file/bot{$token}/{$filePath}";
+            }
+        }
+
+        return null;
+    }
 }

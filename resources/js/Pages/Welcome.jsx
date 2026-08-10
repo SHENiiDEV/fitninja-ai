@@ -252,8 +252,8 @@ export default function Welcome({ auth }) {
                 {/* Pricing Section - Pay As You Go Tokens */}
                 <section id="pricing" className="relative z-10 mx-auto max-w-7xl px-6 py-24 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto">
-                        <h2 className="text-3xl font-extrabold text-white sm:text-4xl">Pay As You Go AI Token Packs</h2>
-                        <p className="mt-4 text-slate-400">No monthly subscriptions. Buy tokens whenever you need them (£1 = 20 Tokens). Pay with Card or Bank Transfer.</p>
+                        <h2 className="text-3xl font-extrabold text-white sm:text-4xl">High-Level AI Coaching Token Packs</h2>
+                        <p className="mt-4 text-slate-400">1 Token = €1.00 (€1 per text log, voice message, or food photo analysis). No monthly commitments.</p>
                     </div>
 
                     <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3 max-w-6xl mx-auto">
@@ -261,12 +261,12 @@ export default function Welcome({ auth }) {
                         <div className="rounded-3xl border border-slate-800 bg-slate-900/50 p-8 flex flex-col justify-between">
                             <div>
                                 <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Starter</span>
-                                <h3 className="mt-2 text-2xl font-bold text-white">100 Tokens</h3>
-                                <p className="mt-1 text-4xl font-extrabold text-white">£5.00</p>
-                                <p className="mt-1 text-xs text-slate-400">~ £0.05 per log entry</p>
+                                <h3 className="mt-2 text-2xl font-bold text-white">5 Tokens</h3>
+                                <p className="mt-1 text-4xl font-extrabold text-white">€5.00</p>
+                                <p className="mt-1 text-xs text-slate-400">€1.00 per AI interaction</p>
                                 <ul className="mt-6 space-y-3 text-sm text-slate-300">
-                                    <li className="flex items-center gap-2">✓ 100 AI Meal & Workout Logs</li>
-                                    <li className="flex items-center gap-2">✓ Complete Telegram Integration</li>
+                                    <li className="flex items-center gap-2">✓ 5 High-Level AI Interactions</li>
+                                    <li className="flex items-center gap-2">✓ Text, Voice & Photo Recognition</li>
                                     <li className="flex items-center gap-2">✓ Full 14-Day Web Dashboard</li>
                                 </ul>
                             </div>
@@ -274,7 +274,7 @@ export default function Welcome({ auth }) {
                                 href={route('login')}
                                 className="cursor-pointer mt-8 block rounded-2xl border border-slate-700 bg-slate-800 py-3.5 text-center text-sm font-bold text-white transition-colors hover:bg-slate-700"
                             >
-                                Get 100 Tokens
+                                Get 5 Tokens
                             </Link>
                         </div>
 
@@ -283,12 +283,12 @@ export default function Welcome({ auth }) {
                             <span className="absolute -top-3 right-8 rounded-full bg-emerald-500 px-3 py-1 text-[11px] font-extrabold uppercase text-slate-950">Most Popular</span>
                             <div>
                                 <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Best Value</span>
-                                <h3 className="mt-2 text-2xl font-bold text-white">600 Tokens</h3>
-                                <p className="mt-1 text-4xl font-extrabold text-white">£30.00</p>
-                                <p className="mt-1 text-xs text-emerald-400">~ £0.05 per log entry</p>
+                                <h3 className="mt-2 text-2xl font-bold text-white">30 Tokens</h3>
+                                <p className="mt-1 text-4xl font-extrabold text-white">€30.00</p>
+                                <p className="mt-1 text-xs text-emerald-400">€1.00 per AI interaction</p>
                                 <ul className="mt-6 space-y-3 text-sm text-slate-200">
-                                    <li className="flex items-center gap-2 text-emerald-400">✓ 600 AI Meal & Workout Logs</li>
-                                    <li className="flex items-center gap-2 text-emerald-400">✓ Priority Response Processing</li>
+                                    <li className="flex items-center gap-2 text-emerald-400">✓ 30 High-Level AI Interactions</li>
+                                    <li className="flex items-center gap-2 text-emerald-400">✓ Priority Multi-Modal Processing</li>
                                     <li className="flex items-center gap-2 text-emerald-400">✓ Card & Direct Bank Transfer</li>
                                 </ul>
                             </div>
@@ -296,28 +296,28 @@ export default function Welcome({ auth }) {
                                 href={route('login')}
                                 className="cursor-pointer mt-8 block rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 py-3.5 text-center text-sm font-bold text-white shadow-lg shadow-emerald-500/25 transition-transform hover:scale-105"
                             >
-                                Get 600 Tokens
+                                Get 30 Tokens
                             </Link>
                         </div>
 
                         {/* Ultimate Pack */}
                         <div className="rounded-3xl border border-slate-800 bg-slate-900/50 p-8 flex flex-col justify-between">
                             <div>
-                                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Heavy Users</span>
-                                <h3 className="mt-2 text-2xl font-bold text-white">1,000 Tokens</h3>
-                                <p className="mt-1 text-4xl font-extrabold text-white">£50.00</p>
-                                <p className="mt-1 text-xs text-slate-400">~ £0.05 per log entry</p>
+                                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Elite Athletes</span>
+                                <h3 className="mt-2 text-2xl font-bold text-white">50 Tokens</h3>
+                                <p className="mt-1 text-4xl font-extrabold text-white">€50.00</p>
+                                <p className="mt-1 text-xs text-slate-400">€1.00 per AI interaction</p>
                                 <ul className="mt-6 space-y-3 text-sm text-slate-300">
-                                    <li className="flex items-center gap-2">✓ 1,000 AI Meal & Workout Logs</li>
-                                    <li className="flex items-center gap-2">✓ Unlimited Dashboard History</li>
-                                    <li className="flex items-center gap-2">✓ Dedicated Priority Processing</li>
+                                    <li className="flex items-center gap-2">✓ 50 High-Level AI Interactions</li>
+                                    <li className="flex items-center gap-2">✓ Unlimited Dashboard Analytics</li>
+                                    <li className="flex items-center gap-2">✓ Dedicated VIP Priority Queue</li>
                                 </ul>
                             </div>
                             <Link
                                 href={route('login')}
                                 className="cursor-pointer mt-8 block rounded-2xl border border-slate-700 bg-slate-800 py-3.5 text-center text-sm font-bold text-white transition-colors hover:bg-slate-700"
                             >
-                                Get 1,000 Tokens
+                                Get 50 Tokens
                             </Link>
                         </div>
                     </div>

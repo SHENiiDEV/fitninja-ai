@@ -2,13 +2,13 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, useForm } from '@inertiajs/react';
 import { useState } from 'react';
 
-export default function Billing({ tokens, ratePerToken = 0.05, presetPackages, bankDetails, status }) {
-    const [customTokens, setCustomTokens] = useState(600); // default 600 tokens (£30)
+export default function Billing({ tokens, ratePerToken = 1.00, presetPackages, bankDetails, status }) {
+    const [customTokens, setCustomTokens] = useState(30); // default 30 tokens (€30)
     const [paymentMethod, setPaymentMethod] = useState('card'); // 'card' | 'bank'
     const [copiedField, setCopiedField] = useState(null);
 
     const { data: cardFormData, setData: setCardFormData, post: postCard, processing: cardProcessing } = useForm({
-        tokens_amount: 600,
+        tokens_amount: 30,
     });
 
     const { post: postBankTransfer, processing: bankProcessing } = useForm({
@@ -48,20 +48,20 @@ export default function Billing({ tokens, ratePerToken = 0.05, presetPackages, b
         <AuthenticatedLayout
             header={
                 <div>
-                    <h2 className="text-2xl font-extrabold text-white">
-                        AI Token Calculator & Store
+                    <h2 className="text-2xl font-black text-white tracking-tight">
+                        Elite AI Token Store
                     </h2>
-                    <p className="text-xs text-slate-400">Buy custom token amounts (£1 = 20 Tokens / £0.05 per Token)</p>
+                    <p className="text-xs text-slate-400">High-Performance AI Coaching Tokens (€1.00 = 1 Token / 1 Interaction)</p>
                 </div>
             }
         >
-            <Head title="Tokens & Billing" />
+            <Head title="Tokens & Billing — FitNinja AI" />
 
             <div className="py-8">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     {status === 'tokens-purchased' && (
                         <div className="mb-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 p-4 text-sm font-semibold text-emerald-400">
-                            🎉 Payment successful! {customTokens} AI tokens added to your account balance.
+                            🎉 Payment successful! {customTokens} AI coaching tokens added to your balance.
                         </div>
                     )}
 
@@ -76,13 +76,13 @@ export default function Billing({ tokens, ratePerToken = 0.05, presetPackages, b
                         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                             <div>
                                 <span className="inline-block rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
-                                    Current Balance
+                                    Available AI Balance
                                 </span>
                                 <h3 className="mt-2 text-4xl font-black tracking-tight">
                                     {tokens} <span className="text-2xl font-normal text-emerald-100">AI Tokens</span>
                                 </h3>
                                 <p className="mt-1 text-xs text-emerald-100/90 font-medium">
-                                    1 token = 1 complete AI meal analysis or workout log entry
+                                    1 Token = 1 Message (Text log, Voice message, or Photo food analysis)
                                 </p>
                             </div>
                             <div className="flex items-center gap-3">
@@ -97,22 +97,22 @@ export default function Billing({ tokens, ratePerToken = 0.05, presetPackages, b
 
                     {/* Interactive Custom Token Calculator */}
                     <div className="mb-8 rounded-3xl border border-slate-800 bg-slate-900/80 p-8 shadow-xl backdrop-blur-xl">
-                        <h3 className="text-xl font-bold text-white mb-2">1. Enter Desired Token Amount</h3>
-                        <p className="text-xs text-slate-400 mb-6">Rate: £1.00 = 20 Tokens (£0.05 / token)</p>
+                        <h3 className="text-xl font-bold text-white mb-2">1. Select AI Token Package</h3>
+                        <p className="text-xs text-slate-400 mb-6">Rate: €1.00 per Token (€1 = 1 Interaction)</p>
 
                         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 items-center">
                             {/* Token Input Field */}
                             <div className="lg:col-span-7 space-y-4">
                                 <div>
                                     <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
-                                        How many tokens do you need?
+                                        Custom Token Quantity:
                                     </label>
                                     <div className="relative flex items-center">
                                         <input
                                             type="number"
-                                            min="20"
+                                            min="5"
                                             max="50000"
-                                            step="10"
+                                            step="1"
                                             value={customTokens}
                                             onChange={(e) => handleTokensChange(e.target.value)}
                                             className="w-full rounded-2xl border-2 border-emerald-500/60 bg-slate-950 px-5 py-4 text-2xl font-black text-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20"
@@ -125,7 +125,7 @@ export default function Billing({ tokens, ratePerToken = 0.05, presetPackages, b
 
                                 {/* Presets Shortcuts */}
                                 <div>
-                                    <span className="text-xs text-slate-400 block mb-2 font-medium">Quick Presets:</span>
+                                    <span className="text-xs text-slate-400 block mb-2 font-medium">Popular Coaching Packs:</span>
                                     <div className="flex flex-wrap gap-3">
                                         {presetPackages.map((pkg) => (
                                             <button
@@ -138,7 +138,7 @@ export default function Billing({ tokens, ratePerToken = 0.05, presetPackages, b
                                                         : 'border-slate-800 bg-slate-950 text-slate-300 hover:border-slate-700'
                                                 }`}
                                             >
-                                                {pkg.tokens} Tokens (£{pkg.price.toFixed(2)})
+                                                {pkg.tokens} Tokens (€{pkg.price.toFixed(2)})
                                             </button>
                                         ))}
                                     </div>
@@ -149,10 +149,10 @@ export default function Billing({ tokens, ratePerToken = 0.05, presetPackages, b
                             <div className="lg:col-span-5 rounded-2xl border border-slate-800 bg-slate-950/80 p-6 text-center">
                                 <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Total Price</span>
                                 <div className="mt-2 text-5xl font-black text-emerald-400">
-                                    £{totalPrice}
+                                    €{totalPrice}
                                 </div>
                                 <p className="mt-2 text-xs text-slate-400">
-                                    Includes {customTokens} AI Meal & Workout log entries
+                                    Includes {customTokens} High-Level AI Coaching Interactions
                                 </p>
                             </div>
                         </div>
@@ -209,7 +209,7 @@ export default function Billing({ tokens, ratePerToken = 0.05, presetPackages, b
                         <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur-xl">
                             <h4 className="mb-2 text-base font-bold text-white">Checkout with Card</h4>
                             <p className="mb-6 text-xs text-slate-400">
-                                You are purchasing <span className="font-bold text-white">{customTokens} AI Tokens</span> for <span className="font-bold text-emerald-400">£{totalPrice}</span>.
+                                You are purchasing <span className="font-bold text-white">{customTokens} AI Tokens</span> for <span className="font-bold text-emerald-400">€{totalPrice}</span>.
                             </p>
                             <form onSubmit={handleCardSubmit}>
                                 <button
@@ -217,7 +217,7 @@ export default function Billing({ tokens, ratePerToken = 0.05, presetPackages, b
                                     disabled={cardProcessing}
                                     className="cursor-pointer w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-4 text-base font-bold text-white shadow-xl shadow-emerald-500/20 transition-all hover:scale-[1.01] hover:shadow-emerald-500/40 disabled:opacity-50"
                                 >
-                                    {cardProcessing ? 'Processing Checkout...' : `Pay £${totalPrice} Now (${customTokens} Tokens)`}
+                                    {cardProcessing ? 'Processing Checkout...' : `Pay €${totalPrice} Now (${customTokens} Tokens)`}
                                 </button>
                             </form>
                         </div>
@@ -228,7 +228,7 @@ export default function Billing({ tokens, ratePerToken = 0.05, presetPackages, b
                         <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur-xl">
                             <h4 className="mb-2 text-base font-bold text-white">Bank Transfer Wire Details</h4>
                             <p className="mb-6 text-xs text-slate-400">
-                                Please transfer <span className="font-bold text-emerald-400">£{totalPrice}</span> for <span className="font-bold text-white">{customTokens} Tokens</span> and include your unique reference code:
+                                Please transfer <span className="font-bold text-emerald-400">€{totalPrice}</span> for <span className="font-bold text-white">{customTokens} Tokens</span> and include your unique reference code:
                             </p>
 
                             <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">

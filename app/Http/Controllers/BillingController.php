@@ -10,7 +10,7 @@ use Inertia\Response;
 class BillingController extends Controller
 {
     /**
-     * Display token credit store with custom token calculator.
+     * Display token credit store with custom token calculator (€1 = 1 Token).
      */
     public function index(Request $request): Response
     {
@@ -18,19 +18,20 @@ class BillingController extends Controller
 
         return Inertia::render('Billing/Index', [
             'tokens' => $user->credits,
-            'ratePerToken' => 0.05, // £1 = 20 tokens -> £0.05 per token
+            'ratePerToken' => 1.00, // €1.00 = 1 Token
+            'currencySymbol' => '€',
             'presetPackages' => [
-                ['tokens' => 100, 'price' => 5.00, 'popular' => false],
-                ['tokens' => 200, 'price' => 10.00, 'popular' => false],
-                ['tokens' => 600, 'price' => 30.00, 'popular' => true],
+                ['tokens' => 5, 'price' => 5.00, 'popular' => false],
+                ['tokens' => 30, 'price' => 30.00, 'popular' => true],
+                ['tokens' => 50, 'price' => 50.00, 'popular' => false],
             ],
             'bankDetails' => [
-                'bankName' => 'Barclays Bank UK',
-                'accountName' => 'FitNinja AI Ltd',
+                'bankName' => 'Revolut Business / Barclays Europe',
+                'accountName' => 'FitNinja AI Elite Coaching Ltd',
                 'sortCode' => '20-45-89',
                 'accountNumber' => '83920147',
-                'iban' => 'GB89 BARC 2045 8983 9201 47',
-                'swift' => 'BARCGB22',
+                'iban' => 'EU89 REVO 2045 8983 9201 47',
+                'swift' => 'REVOGB22',
                 'referenceCode' => 'FN-' . strtoupper(substr(md5($user->id . 'fitninja'), 0, 8)),
             ],
         ]);
@@ -42,7 +43,7 @@ class BillingController extends Controller
     public function processCardPayment(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'tokens_amount' => ['required', 'integer', 'min:20', 'max:50000'],
+            'tokens_amount' => ['required', 'integer', 'min:5', 'max:50000'],
         ]);
 
         $tokensToAdd = (int) $validated['tokens_amount'];
