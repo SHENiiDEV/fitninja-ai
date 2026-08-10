@@ -252,21 +252,21 @@ export default function Welcome({ auth }) {
                 {/* Pricing Section - Pay As You Go Tokens */}
                 <section id="pricing" className="relative z-10 mx-auto max-w-7xl px-6 py-24 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto">
-                        <h2 className="text-3xl font-extrabold text-white sm:text-4xl">High-Level AI Coaching Token Packs</h2>
-                        <p className="mt-4 text-slate-400">1 Token = €1.00 (€1 per text log, voice message, or food photo analysis). No monthly commitments.</p>
+                        <h2 className="text-3xl font-extrabold text-white sm:text-4xl">FOREX Executive AI Credit Suites</h2>
+                        <p className="mt-4 text-slate-400">High-Performance Neural Coaching for Professional Traders, Investors & High-Net-Worth Individuals (€1.00 = 1 AI Token).</p>
                     </div>
 
                     <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3 max-w-6xl mx-auto">
-                        {/* Starter Pack */}
+                        {/* Executive Trader */}
                         <div className="rounded-3xl border border-slate-800 bg-slate-900/50 p-8 flex flex-col justify-between">
                             <div>
-                                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Starter</span>
-                                <h3 className="mt-2 text-2xl font-bold text-white">5 Tokens</h3>
-                                <p className="mt-1 text-4xl font-extrabold text-white">€5.00</p>
+                                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Executive Trader</span>
+                                <h3 className="mt-2 text-2xl font-bold text-white">100 Tokens</h3>
+                                <p className="mt-1 text-4xl font-extrabold text-white">€100.00</p>
                                 <p className="mt-1 text-xs text-slate-400">€1.00 per AI interaction</p>
                                 <ul className="mt-6 space-y-3 text-sm text-slate-300">
-                                    <li className="flex items-center gap-2">✓ 5 High-Level AI Interactions</li>
-                                    <li className="flex items-center gap-2">✓ Text, Voice & Photo Recognition</li>
+                                    <li className="flex items-center gap-2">✓ 100 High-Performance AI Interactions</li>
+                                    <li className="flex items-center gap-2">✓ Text, Voice & Photo Food Recognition</li>
                                     <li className="flex items-center gap-2">✓ Full 14-Day Web Dashboard</li>
                                 </ul>
                             </div>
@@ -274,50 +274,50 @@ export default function Welcome({ auth }) {
                                 href={route('login')}
                                 className="cursor-pointer mt-8 block rounded-2xl border border-slate-700 bg-slate-800 py-3.5 text-center text-sm font-bold text-white transition-colors hover:bg-slate-700"
                             >
-                                Get 5 Tokens
+                                Order €100 Pack
                             </Link>
                         </div>
 
-                        {/* Pro Pack */}
+                        {/* FOREX VIP Trader */}
                         <div className="relative rounded-3xl border-2 border-emerald-500 bg-gradient-to-b from-slate-900 to-slate-950 p-8 flex flex-col justify-between shadow-2xl shadow-emerald-500/10">
-                            <span className="absolute -top-3 right-8 rounded-full bg-emerald-500 px-3 py-1 text-[11px] font-extrabold uppercase text-slate-950">Most Popular</span>
+                            <span className="absolute -top-3 right-8 rounded-full bg-emerald-500 px-3 py-1 text-[11px] font-extrabold uppercase text-slate-950">Most Popular (Core Tier)</span>
                             <div>
-                                <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Best Value</span>
-                                <h3 className="mt-2 text-2xl font-bold text-white">30 Tokens</h3>
-                                <p className="mt-1 text-4xl font-extrabold text-white">€30.00</p>
+                                <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Executive Best Value</span>
+                                <h3 className="mt-2 text-2xl font-bold text-white">500 Tokens</h3>
+                                <p className="mt-1 text-4xl font-extrabold text-white">€500.00</p>
                                 <p className="mt-1 text-xs text-emerald-400">€1.00 per AI interaction</p>
                                 <ul className="mt-6 space-y-3 text-sm text-slate-200">
-                                    <li className="flex items-center gap-2 text-emerald-400">✓ 30 High-Level AI Interactions</li>
-                                    <li className="flex items-center gap-2 text-emerald-400">✓ Priority Multi-Modal Processing</li>
-                                    <li className="flex items-center gap-2 text-emerald-400">✓ Card & Direct Bank Transfer</li>
+                                    <li className="flex items-center gap-2 text-emerald-400">✓ 500 High-Performance AI Interactions</li>
+                                    <li className="flex items-center gap-2 text-emerald-400">✓ VIP Priority Neural Engine Access</li>
+                                    <li className="flex items-center gap-2 text-emerald-400">✓ Card & Corporate SWIFT Bank Wire</li>
                                 </ul>
                             </div>
                             <Link
                                 href={route('login')}
                                 className="cursor-pointer mt-8 block rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 py-3.5 text-center text-sm font-bold text-white shadow-lg shadow-emerald-500/25 transition-transform hover:scale-105"
                             >
-                                Get 30 Tokens
+                                Order €500 Executive Suite
                             </Link>
                         </div>
 
-                        {/* Ultimate Pack */}
+                        {/* Institutional Hedge Fund */}
                         <div className="rounded-3xl border border-slate-800 bg-slate-900/50 p-8 flex flex-col justify-between">
                             <div>
-                                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Elite Athletes</span>
-                                <h3 className="mt-2 text-2xl font-bold text-white">50 Tokens</h3>
-                                <p className="mt-1 text-4xl font-extrabold text-white">€50.00</p>
+                                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Institutional</span>
+                                <h3 className="mt-2 text-2xl font-bold text-white">1,500 Tokens</h3>
+                                <p className="mt-1 text-4xl font-extrabold text-white">€1,500.00</p>
                                 <p className="mt-1 text-xs text-slate-400">€1.00 per AI interaction</p>
                                 <ul className="mt-6 space-y-3 text-sm text-slate-300">
-                                    <li className="flex items-center gap-2">✓ 50 High-Level AI Interactions</li>
+                                    <li className="flex items-center gap-2">✓ 1,500 High-Performance AI Interactions</li>
                                     <li className="flex items-center gap-2">✓ Unlimited Dashboard Analytics</li>
-                                    <li className="flex items-center gap-2">✓ Dedicated VIP Priority Queue</li>
+                                    <li className="flex items-center gap-2">✓ Dedicated Account Manager & VIP Line</li>
                                 </ul>
                             </div>
                             <Link
                                 href={route('login')}
                                 className="cursor-pointer mt-8 block rounded-2xl border border-slate-700 bg-slate-800 py-3.5 text-center text-sm font-bold text-white transition-colors hover:bg-slate-700"
                             >
-                                Get 50 Tokens
+                                Order €1,500 Institutional Pack
                             </Link>
                         </div>
                     </div>

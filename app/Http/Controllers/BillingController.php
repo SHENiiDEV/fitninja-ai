@@ -10,7 +10,7 @@ use Inertia\Response;
 class BillingController extends Controller
 {
     /**
-     * Display token credit store with custom token calculator (€1 = 1 Token).
+     * Display high-ticket FOREX executive token credit store (€1.00 = 1 Token).
      */
     public function index(Request $request): Response
     {
@@ -21,13 +21,13 @@ class BillingController extends Controller
             'ratePerToken' => 1.00, // €1.00 = 1 Token
             'currencySymbol' => '€',
             'presetPackages' => [
-                ['tokens' => 5, 'price' => 5.00, 'popular' => false],
-                ['tokens' => 30, 'price' => 30.00, 'popular' => true],
-                ['tokens' => 50, 'price' => 50.00, 'popular' => false],
+                ['tokens' => 100, 'price' => 100.00, 'popular' => false, 'name' => 'Executive Trader'],
+                ['tokens' => 500, 'price' => 500.00, 'popular' => true, 'name' => 'FOREX VIP Trader'],
+                ['tokens' => 1500, 'price' => 1500.00, 'popular' => false, 'name' => 'Institutional Hedge Fund'],
             ],
             'bankDetails' => [
-                'bankName' => 'Revolut Business / Barclays Europe',
-                'accountName' => 'FitNinja AI Elite Coaching Ltd',
+                'bankName' => 'Barclays Private / Revolut Business Europe',
+                'accountName' => 'FitNinja AI Executive Performance Ltd',
                 'sortCode' => '20-45-89',
                 'accountNumber' => '83920147',
                 'iban' => 'EU89 REVO 2045 8983 9201 47',
@@ -38,12 +38,12 @@ class BillingController extends Controller
     }
 
     /**
-     * Process custom token quantity purchase.
+     * Process custom high-ticket token quantity purchase.
      */
     public function processCardPayment(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'tokens_amount' => ['required', 'integer', 'min:5', 'max:50000'],
+            'tokens_amount' => ['required', 'integer', 'min:50', 'max:100000'],
         ]);
 
         $tokensToAdd = (int) $validated['tokens_amount'];
