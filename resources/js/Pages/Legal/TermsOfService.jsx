@@ -35,7 +35,7 @@ export default function TermsOfService() {
                         Terms & Governance
                     </div>
                     <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl">Executive Terms of Service</h1>
-                    <p className="mt-2 text-xs text-slate-400">Effective Date: August 10, 2026</p>
+                    <p className="mt-2 text-xs text-slate-400">Effective Date: August 18, 2026</p>
 
                     <div className="mt-10 space-y-6 text-sm text-slate-300 leading-relaxed font-light">
                         {/* Prominent AI & Health Disclaimer */}
@@ -91,6 +91,13 @@ export default function TermsOfService() {
                             <h2 className="text-xl font-bold text-white">6. Acceptable Use</h2>
                             <p>
                                 You agree not to misuse our Telegram bot or website services, perform automated scraping, or attempt unauthorized access to our infrastructure.
+                            </p>
+                        </section>
+
+                        <section className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8 space-y-3 backdrop-blur-xl shadow-xl">
+                            <h2 className="text-xl font-bold text-white">7. Corporate Entity Information</h2>
+                            <p>
+                                FitNinja AI is owned and operated by <strong>CHANGE IT UP SERVICES LTD</strong> (Company Number: 16107295), registered office address at 14 Broadway, Nottingham, United Kingdom, NG1 1PS.
                             </p>
                         </section>
                     </div>

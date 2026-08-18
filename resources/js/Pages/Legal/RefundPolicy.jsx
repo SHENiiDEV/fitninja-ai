@@ -35,7 +35,7 @@ export default function RefundPolicy() {
                         Billing & Guarantees
                     </div>
                     <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl">14-Day Refund Guarantee Policy</h1>
-                    <p className="mt-2 text-xs text-slate-400">Effective Date: August 10, 2026</p>
+                    <p className="mt-2 text-xs text-slate-400">Effective Date: August 18, 2026</p>
 
                     <div className="mt-10 space-y-6 text-sm text-slate-300 leading-relaxed font-light">
                         <section className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8 space-y-3 backdrop-blur-xl shadow-xl">
@@ -56,6 +56,13 @@ export default function RefundPolicy() {
                             <h2 className="text-xl font-bold text-white">3. How to Request a Refund</h2>
                             <p>
                                 To request a refund, please send your transaction reference code (`FN-XXXX`) and order details to billing@fitninja.co.uk. Refunds are processed within 3-5 business days back to your original payment account.
+                            </p>
+                        </section>
+
+                        <section className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8 space-y-3 backdrop-blur-xl shadow-xl">
+                            <h2 className="text-xl font-bold text-white">4. Corporate Entity</h2>
+                            <p>
+                                Refunds are issued by <strong>CHANGE IT UP SERVICES LTD</strong> (Company Number: 16107295), registered office at 14 Broadway, Nottingham, United Kingdom, NG1 1PS.
                             </p>
                         </section>
                     </div>

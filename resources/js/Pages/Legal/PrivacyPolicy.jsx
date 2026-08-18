@@ -35,7 +35,7 @@ export default function PrivacyPolicy() {
                         Legal & Data Protection
                     </div>
                     <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl">Privacy Policy</h1>
-                    <p className="mt-2 text-xs text-slate-400">Effective Date: August 10, 2026</p>
+                    <p className="mt-2 text-xs text-slate-400">Effective Date: August 18, 2026</p>
 
                     <div className="mt-10 space-y-6 text-sm text-slate-300 leading-relaxed font-light">
                         <section className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8 space-y-3 backdrop-blur-xl shadow-xl">
@@ -63,6 +63,13 @@ export default function PrivacyPolicy() {
                             <h2 className="text-xl font-bold text-white">4. Your Data Rights</h2>
                             <p>
                                 You can request full deletion of your account and fitness records at any time directly through your web profile settings (`/profile`) or by contacting support at support@fitninja.co.uk.
+                            </p>
+                        </section>
+
+                        <section className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8 space-y-3 backdrop-blur-xl shadow-xl">
+                            <h2 className="text-xl font-bold text-white">5. Corporate Data Controller</h2>
+                            <p>
+                                FitNinja AI is operated by <strong>CHANGE IT UP SERVICES LTD</strong> (Company Number: 16107295), registered office address at 14 Broadway, Nottingham, United Kingdom, NG1 1PS.
                             </p>
                         </section>
                     </div>

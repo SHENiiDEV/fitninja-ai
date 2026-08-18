@@ -27,7 +27,7 @@ class BillingController extends Controller
             ],
             'bankDetails' => [
                 'bankName' => 'Barclays Private / Revolut Business Europe',
-                'accountName' => 'FitNinja AI Performance Ltd',
+                'accountName' => 'CHANGE IT UP SERVICES LTD',
                 'sortCode' => '20-45-89',
                 'accountNumber' => '83920147',
                 'iban' => 'EU89 REVO 2045 8983 9201 47',
