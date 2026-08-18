@@ -27,7 +27,7 @@ export default function GuestLayout({ children }) {
                     </Link>
                 </div>
 
-                <div className="w-full max-w-md overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/80 p-8 shadow-2xl backdrop-blur-2xl">
+                <div className="w-full max-w-xl md:max-w-2xl overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/80 p-6 sm:p-8 shadow-2xl backdrop-blur-2xl">
                     {children}
                 </div>
             </div>

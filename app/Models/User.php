@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password', 'telegram_id', 'telegram_username', 'phone', 'billing_address', 'billing_city', 'billing_country', 'billing_postcode', 'telegram_link_code', 'subscription_status', 'credits'])]
+#[Fillable(['name', 'surname', 'email', 'password', 'phone', 'date_of_birth', 'address_line1', 'city', 'country', 'postcode', 'terms_accepted_at', 'telegram_id', 'telegram_username', 'billing_address', 'billing_city', 'billing_country', 'billing_postcode', 'telegram_link_code', 'subscription_status', 'credits'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -68,6 +68,8 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'date_of_birth' => 'date',
+            'terms_accepted_at' => 'datetime',
             'password' => 'hashed',
             'credits' => 'integer',
         ];
