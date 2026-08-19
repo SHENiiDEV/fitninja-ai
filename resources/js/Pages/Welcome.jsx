@@ -1,11 +1,14 @@
 import FooterWithLegal from '@/Components/Landing/FooterWithLegal';
 import ApplicationLogo from '@/Components/ApplicationLogo';
+import FloatingCurrencyPicker from '@/Components/FloatingCurrencyPicker';
 import LiveDemoSimulator from '@/Components/Landing/LiveDemoSimulator';
+import { useCurrency } from '@/Contexts/CurrencyContext';
 import { Head, Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 export default function Welcome({ auth }) {
     const [faqOpen, setFaqOpen] = useState(null);
+    const { formatPrice, currency } = useCurrency();
 
     const toggleFaq = (index) => {
         setFaqOpen(faqOpen === index ? null : index);
@@ -42,6 +45,7 @@ export default function Welcome({ auth }) {
                     </nav>
 
                     <div className="flex items-center gap-4">
+                        <FloatingCurrencyPicker />
                         {auth?.user ? (
                             <Link
                                 href={route('dashboard')}
@@ -259,8 +263,8 @@ export default function Welcome({ auth }) {
                             <div>
                                 <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Foundations</span>
                                 <h3 className="mt-2 text-2xl font-bold text-white">100 Tokens</h3>
-                                <p className="mt-1 text-4xl font-extrabold text-white">€100.00</p>
-                                <p className="mt-1 text-xs text-slate-400">€1.00 per AI interaction</p>
+                                <p className="mt-1 text-4xl font-extrabold text-white">{formatPrice(100)}</p>
+                                <p className="mt-1 text-xs text-slate-400">{formatPrice(1)} per AI interaction</p>
                                 <ul className="mt-6 space-y-3 text-sm text-slate-300">
                                     <li className="flex items-center gap-2">✓ 100 High-Performance AI Interactions</li>
                                     <li className="flex items-center gap-2">✓ Text, Voice & Photo Food Recognition</li>
@@ -271,7 +275,7 @@ export default function Welcome({ auth }) {
                                 href={route('login')}
                                 className="cursor-pointer mt-8 block rounded-2xl border border-slate-700 bg-slate-800 py-3.5 text-center text-sm font-bold text-white transition-colors hover:bg-slate-700"
                             >
-                                Order €100 Pack
+                                Order {formatPrice(100)} Pack
                             </Link>
                         </div>
 
@@ -281,8 +285,8 @@ export default function Welcome({ auth }) {
                             <div>
                                 <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Pro Transformation</span>
                                 <h3 className="mt-2 text-2xl font-bold text-white">500 Tokens</h3>
-                                <p className="mt-1 text-4xl font-extrabold text-white">€500.00</p>
-                                <p className="mt-1 text-xs text-emerald-400">€1.00 per AI interaction</p>
+                                <p className="mt-1 text-4xl font-extrabold text-white">{formatPrice(500)}</p>
+                                <p className="mt-1 text-xs text-emerald-400">{formatPrice(1)} per AI interaction</p>
                                 <ul className="mt-6 space-y-3 text-sm text-slate-200">
                                     <li className="flex items-center gap-2 text-emerald-400">✓ 500 High-Performance AI Interactions</li>
                                     <li className="flex items-center gap-2 text-emerald-400">✓ VIP Priority Neural Engine Access</li>
@@ -293,7 +297,7 @@ export default function Welcome({ auth }) {
                                 href={route('login')}
                                 className="cursor-pointer mt-8 block rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 py-3.5 text-center text-sm font-bold text-white shadow-lg shadow-emerald-500/25 transition-transform hover:scale-105"
                             >
-                                Order €500 Pro Suite
+                                Order {formatPrice(500)} Pro Suite
                             </Link>
                         </div>
 
@@ -302,8 +306,8 @@ export default function Welcome({ auth }) {
                             <div>
                                 <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Elite Performance</span>
                                 <h3 className="mt-2 text-2xl font-bold text-white">1,500 Tokens</h3>
-                                <p className="mt-1 text-4xl font-extrabold text-white">€1,500.00</p>
-                                <p className="mt-1 text-xs text-slate-400">€1.00 per AI interaction</p>
+                                <p className="mt-1 text-4xl font-extrabold text-white">{formatPrice(1500)}</p>
+                                <p className="mt-1 text-xs text-slate-400">{formatPrice(1)} per AI interaction</p>
                                 <ul className="mt-6 space-y-3 text-sm text-slate-300">
                                     <li className="flex items-center gap-2">✓ 1,500 High-Performance AI Interactions</li>
                                     <li className="flex items-center gap-2">✓ Unlimited Dashboard Analytics</li>
@@ -314,7 +318,7 @@ export default function Welcome({ auth }) {
                                 href={route('login')}
                                 className="cursor-pointer mt-8 block rounded-2xl border border-slate-700 bg-slate-800 py-3.5 text-center text-sm font-bold text-white transition-colors hover:bg-slate-700"
                             >
-                                Order €1,500 Elite Pack
+                                Order {formatPrice(1500)} Elite Pack
                             </Link>
                         </div>
                     </div>

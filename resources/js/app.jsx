@@ -1,6 +1,9 @@
 import '../css/app.css';
 import './bootstrap';
 
+import CookieConsent from '@/Components/CookieConsent';
+import OfflineBanner from '@/Components/OfflineBanner';
+import { CurrencyProvider } from '@/Contexts/CurrencyContext';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
@@ -22,13 +25,18 @@ createInertiaApp({
             return resolvePageComponent(pageKey, pages);
         }
 
-        // Statically imported ErrorPage fallback for invalid/missing routes
         return ErrorPage;
     },
     setup({ el, App, props }) {
         const root = createRoot(el);
 
-        root.render(<App {...props} />);
+        root.render(
+            <CurrencyProvider>
+                <App {...props} />
+                <CookieConsent />
+                <OfflineBanner />
+            </CurrencyProvider>
+        );
     },
     progress: {
         color: '#10b981',

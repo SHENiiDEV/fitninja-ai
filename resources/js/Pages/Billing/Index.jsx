@@ -1,8 +1,11 @@
+import FloatingCurrencyPicker from '@/Components/FloatingCurrencyPicker';
+import { useCurrency } from '@/Contexts/CurrencyContext';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, useForm } from '@inertiajs/react';
 import { useState } from 'react';
 
 export default function Billing({ tokens, ratePerToken = 1.00, presetPackages, bankDetails, status }) {
+    const { formatPrice, currency } = useCurrency();
     const [customTokens, setCustomTokens] = useState(500); // default 500 tokens (€500 core tier)
     const [paymentMethod, setPaymentMethod] = useState('card'); // 'card' | 'bank'
     const [copiedField, setCopiedField] = useState(null);
@@ -32,8 +35,6 @@ export default function Billing({ tokens, ratePerToken = 1.00, presetPackages, b
         setCardFormData('tokens_amount', amount);
     };
 
-    const totalPrice = (customTokens * ratePerToken).toFixed(2);
-
     const handleCardSubmit = (e) => {
         e.preventDefault();
         postCard(route('billing.card'));
@@ -47,11 +48,14 @@ export default function Billing({ tokens, ratePerToken = 1.00, presetPackages, b
     return (
         <AuthenticatedLayout
             header={
-                <div>
-                    <h2 className="text-2xl font-black text-white tracking-tight">
-                        Executive AI Performance Suite
-                    </h2>
-                    <p className="text-xs text-slate-400">High-Performance Neural Fitness & Executive Nutrition (€1.00 = 1 Token)</p>
+                <div className="flex items-center justify-between">
+                    <div>
+                        <h2 className="text-2xl font-black text-white tracking-tight">
+                            Executive AI Performance Suite
+                        </h2>
+                        <p className="text-xs text-slate-400">High-Performance Neural Fitness & Executive Nutrition ({formatPrice(1.00)} = 1 Token)</p>
+                    </div>
+                    <FloatingCurrencyPicker />
                 </div>
             }
         >
@@ -139,7 +143,7 @@ export default function Billing({ tokens, ratePerToken = 1.00, presetPackages, b
                                                 }`}
                                             >
                                                 <span>{pkg.name || `${pkg.tokens} Tokens`}</span>
-                                                <span className="text-sm font-black text-white mt-0.5">€{pkg.price.toFixed(2)}</span>
+                                                <span className="text-sm font-black text-white mt-0.5">{formatPrice(pkg.price)}</span>
                                             </button>
                                         ))}
                                     </div>
@@ -150,7 +154,7 @@ export default function Billing({ tokens, ratePerToken = 1.00, presetPackages, b
                             <div className="lg:col-span-5 rounded-2xl border border-slate-800 bg-slate-950/80 p-6 text-center">
                                 <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Total Invoice Amount</span>
                                 <div className="mt-2 text-5xl font-black text-emerald-400">
-                                    €{totalPrice}
+                                    {formatPrice(customTokens * ratePerToken)}
                                 </div>
                                 <p className="mt-2 text-xs text-slate-400">
                                     Includes {customTokens} High-Performance AI Interactions
