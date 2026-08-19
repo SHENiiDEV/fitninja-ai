@@ -4,7 +4,7 @@ import './bootstrap';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
-import ErrorPage from './Pages/Error';
+import ErrorPage from './Pages/Error.jsx';
 
 const appName = import.meta.env.VITE_APP_NAME || 'FitNinja AI';
 
