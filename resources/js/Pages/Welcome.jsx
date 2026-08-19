@@ -1,4 +1,5 @@
 import FooterWithLegal from '@/Components/Landing/FooterWithLegal';
+import ApplicationLogo from '@/Components/ApplicationLogo';
 import LiveDemoSimulator from '@/Components/Landing/LiveDemoSimulator';
 import { Head, Link } from '@inertiajs/react';
 import { useState } from 'react';
@@ -25,16 +26,12 @@ export default function Welcome({ auth }) {
 
                 {/* Navigation Header */}
                 <header className="relative z-20 mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8">
-                    <div className="flex items-center gap-3">
-                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 shadow-lg shadow-emerald-500/25 ring-1 ring-white/20">
-                            <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
+                    <Link href="/" className="flex items-center gap-3">
+                        <ApplicationLogo className="h-11 w-11" />
                         <span className="text-2xl font-black tracking-tight text-white">
                             FitNinja <span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">AI</span>
                         </span>
-                    </div>
+                    </Link>
 
                     <nav className="hidden items-center gap-8 md:flex text-sm font-medium text-slate-400">
                         <a href="#demo" className="cursor-pointer transition-colors hover:text-emerald-400">Live AI Demo</a>

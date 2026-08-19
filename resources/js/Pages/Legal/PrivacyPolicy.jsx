@@ -1,3 +1,4 @@
+import ApplicationLogo from '@/Components/ApplicationLogo';
 import FooterWithLegal from '@/Components/Landing/FooterWithLegal';
 import { Head, Link } from '@inertiajs/react';
 
@@ -15,11 +16,7 @@ export default function PrivacyPolicy() {
 
                 <header className="relative z-20 mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8 border-b border-slate-800/80 backdrop-blur-xl">
                     <Link href="/" className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 shadow-lg shadow-emerald-500/20">
-                            <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
+                        <ApplicationLogo className="h-10 w-10" />
                         <span className="text-xl font-black tracking-tight text-white">
                             FitNinja <span className="text-emerald-400">AI</span>
                         </span>
