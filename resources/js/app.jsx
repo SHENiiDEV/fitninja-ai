@@ -4,19 +4,26 @@ import './bootstrap';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
+import ErrorPage from './Pages/Error';
 
 const appName = import.meta.env.VITE_APP_NAME || 'FitNinja AI';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => {
+        if (name === 'Error') {
+            return ErrorPage;
+        }
+
         const pages = import.meta.glob('./Pages/**/*.jsx');
         const pageKey = `./Pages/${name}.jsx`;
+
         if (pages[pageKey]) {
             return resolvePageComponent(pageKey, pages);
         }
-        // Graceful fallback to Error.jsx if page component is missing
-        return resolvePageComponent('./Pages/Error.jsx', pages);
+
+        // Statically imported ErrorPage fallback for invalid/missing routes
+        return ErrorPage;
     },
     setup({ el, App, props }) {
         const root = createRoot(el);

@@ -40,3 +40,11 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Wildcard Fallback Route for 404 Page Not Found
+Route::fallback(function () {
+    return Inertia::render('Error', ['status' => 404])
+        ->toResponse(request())
+        ->setStatusCode(404);
+});
+
