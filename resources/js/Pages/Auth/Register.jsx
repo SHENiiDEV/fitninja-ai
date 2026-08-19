@@ -1,4 +1,5 @@
 import Checkbox from '@/Components/Checkbox';
+import DatePicker from '@/Components/DatePicker';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
@@ -174,15 +175,12 @@ export default function Register() {
                         </div>
 
                         <div>
-                            <InputLabel htmlFor="date_of_birth" value="Date of Birth" className="text-slate-300 font-medium text-xs" />
-                            <TextInput
-                                id="date_of_birth"
-                                type="date"
-                                name="date_of_birth"
+                            <InputLabel htmlFor="date_of_birth" value="Date of Birth" className="text-slate-300 font-medium text-xs mb-1" />
+                            <DatePicker
                                 value={data.date_of_birth}
-                                className="mt-1 block w-full rounded-xl border-slate-800 bg-slate-950 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
-                                onChange={(e) => setData('date_of_birth', e.target.value)}
-                                required
+                                onChange={(val) => setData('date_of_birth', val)}
+                                error={errors.date_of_birth}
+                                placeholder="Select Date of Birth"
                             />
                             <InputError message={errors.date_of_birth} className="mt-1.5 text-xs text-rose-400" />
                         </div>

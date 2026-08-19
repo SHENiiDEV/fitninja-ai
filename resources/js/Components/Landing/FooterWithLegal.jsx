@@ -1,3 +1,4 @@
+import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Link } from '@inertiajs/react';
 
 export default function FooterWithLegal() {
@@ -8,11 +9,7 @@ export default function FooterWithLegal() {
                     {/* Brand & Corporate Registered Information */}
                     <div className="md:col-span-5 space-y-4">
                         <Link href="/" className="inline-flex items-center gap-3">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 shadow-lg shadow-emerald-500/20">
-                                <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
-                            </div>
+                            <ApplicationLogo className="h-10 w-10" />
                             <span className="text-xl font-black tracking-tight text-white">
                                 FitNinja <span className="text-emerald-400">AI</span>
                             </span>
@@ -44,6 +41,8 @@ export default function FooterWithLegal() {
                         <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">Executive Platform</h4>
                         <ul className="space-y-2 text-xs">
                             <li><Link href="/" className="hover:text-emerald-400 transition-colors">Home & Features</Link></li>
+                            <li><Link href={route('login')} className="hover:text-emerald-400 font-semibold transition-colors">Sign In / Log In</Link></li>
+                            <li><Link href={route('register')} className="hover:text-emerald-400 font-semibold transition-colors">Register Account</Link></li>
                             <li><Link href={route('billing.index')} className="hover:text-emerald-400 transition-colors">Executive Token Store (€500)</Link></li>
                             <li><Link href={route('dashboard')} className="hover:text-emerald-400 transition-colors">Web Analytics Dashboard</Link></li>
                         </ul>
