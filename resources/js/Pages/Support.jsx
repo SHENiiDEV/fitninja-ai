@@ -118,7 +118,7 @@ export default function Support({ auth, supportEmail }) {
                                 ✉️
                             </div>
                             <h3 className="text-lg font-bold text-white">Executive Email</h3>
-                            <p className="mt-2 text-xs text-slate-400 font-light">Direct support for billing and account inquiries under 24 hours.</p>
+                            <p className="mt-2 text-xs text-slate-400 font-light">Direct support for billing & account inquiries within 24–48 hours (SLA Guarantee).</p>
                             <a href={`mailto:${supportEmail}`} className="mt-4 inline-block font-mono text-xs text-emerald-400 font-bold hover:underline">
                                 {supportEmail}
                             </a>

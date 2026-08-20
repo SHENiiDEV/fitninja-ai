@@ -104,7 +104,7 @@ export default function Contact({ auth, companyName, companyNumber, companyAddre
                 <section className="relative z-10 mx-auto max-w-6xl px-6 pb-20 lg:px-8">
                     {status === 'message-sent' && (
                         <div className="mb-8 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 p-4 text-center text-sm font-semibold text-emerald-400 shadow-xl backdrop-blur-xl animate-fade-in">
-                            🎉 Thank you! Your message has been transmitted to <span className="underline font-mono">{supportEmail}</span>. Our executive desk will reply within 24 hours.
+                            🎉 Thank you! Your message has been transmitted to <span className="underline font-mono">{supportEmail}</span>. Our executive desk will reply within 24–48 hours (SLA guarantee).
                         </div>
                     )}
 
@@ -136,8 +136,8 @@ export default function Contact({ auth, companyName, companyNumber, companyAddre
                                 </div>
 
                                 <div>
-                                    <span className="text-slate-500 font-semibold uppercase tracking-wider block mb-1">Response Guarantee:</span>
-                                    <p className="text-slate-400">Under 24 hours for all token & billing inquiries.</p>
+                                    <span className="text-slate-500 font-semibold uppercase tracking-wider block mb-1">SLA Response Guarantee:</span>
+                                    <p className="text-slate-400">Within 24–48 hours for all token & billing inquiries.</p>
                                 </div>
                             </div>
                         </div>
