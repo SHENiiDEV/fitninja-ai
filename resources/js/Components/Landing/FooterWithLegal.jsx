@@ -41,6 +41,7 @@ export default function FooterWithLegal() {
                         <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">Executive Platform</h4>
                         <ul className="space-y-2 text-xs">
                             <li><Link href="/" className="hover:text-emerald-400 transition-colors">Home & Features</Link></li>
+                            <li><Link href={route('about')} className="hover:text-emerald-400 font-semibold text-emerald-400 transition-colors">About Us — Mission & Legal</Link></li>
                             <li><Link href={route('login')} className="hover:text-emerald-400 font-semibold transition-colors">Sign In / Log In</Link></li>
                             <li><Link href={route('register')} className="hover:text-emerald-400 font-semibold transition-colors">Register Account</Link></li>
                             <li><Link href={route('billing.index')} className="hover:text-emerald-400 transition-colors">Executive Token Store (€500)</Link></li>

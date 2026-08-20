@@ -21,4 +21,9 @@ class LegalController extends Controller
     {
         return Inertia::render('Legal/RefundPolicy');
     }
+
+    public function aboutUs(): Response
+    {
+        return Inertia::render('AboutUs');
+    }
 }

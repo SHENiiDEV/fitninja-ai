@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::get('/privacy-policy', [\App\Http\Controllers\LegalController::class, 'privacyPolicy'])->name('legal.privacy');
 Route::get('/terms-of-service', [\App\Http\Controllers\LegalController::class, 'termsOfService'])->name('legal.terms');
 Route::get('/refund-policy', [\App\Http\Controllers\LegalController::class, 'refundPolicy'])->name('legal.refund');
+Route::get('/about-us', [\App\Http\Controllers\LegalController::class, 'aboutUs'])->name('about');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
