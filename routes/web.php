@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BillingController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserMetricsController;
@@ -21,6 +22,11 @@ Route::get('/privacy-policy', [\App\Http\Controllers\LegalController::class, 'pr
 Route::get('/terms-of-service', [\App\Http\Controllers\LegalController::class, 'termsOfService'])->name('legal.terms');
 Route::get('/refund-policy', [\App\Http\Controllers\LegalController::class, 'refundPolicy'])->name('legal.refund');
 Route::get('/about-us', [\App\Http\Controllers\LegalController::class, 'aboutUs'])->name('about');
+
+Route::get('/how-it-works', [ContactController::class, 'howItWorksPage'])->name('how-it-works');
+Route::get('/contact', [ContactController::class, 'contactPage'])->name('contact');
+Route::post('/contact', [ContactController::class, 'submitContactForm'])->name('contact.submit');
+Route::get('/support', [ContactController::class, 'supportPage'])->name('support');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
