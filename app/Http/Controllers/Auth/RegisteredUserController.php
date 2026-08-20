@@ -95,6 +95,12 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+        try {
+            \Illuminate\Support\Facades\Mail::to($user->email)->send(new \App\Mail\WelcomeUserMail($user));
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::warning('Welcome email send failed: ' . $e->getMessage());
+        }
+
         Auth::login($user);
 
         return redirect(route('dashboard', absolute: false));

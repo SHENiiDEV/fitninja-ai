@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/billing', [BillingController::class, 'index'])->name('billing.index');
     Route::post('/billing/card', [BillingController::class, 'processCardPayment'])->name('billing.card');
     Route::post('/billing/bank', [BillingController::class, 'confirmBankTransfer'])->name('billing.bank');
+    Route::get('/billing/invoice/{payment}', [BillingController::class, 'downloadInvoice'])->name('billing.invoice');
 });
 
 require __DIR__.'/auth.php';
