@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 export default function Welcome({ auth }) {
     const [faqOpen, setFaqOpen] = useState(null);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const { formatPrice, currency } = useCurrency();
 
     const toggleFaq = (index) => {
@@ -16,11 +17,11 @@ export default function Welcome({ auth }) {
 
     return (
         <>
-            <Head title="FitNinja AI — Autonomous AI Fitness & Nutrition Coach" />
+            <Head title="FitNinja AI — Executive Fitness & Neural Nutrition" />
 
-            <div className="relative min-h-screen bg-[#090D16] font-sans text-slate-100 selection:bg-emerald-500 selection:text-white">
-                {/* Ambient Background Glows */}
-                <div className="pointer-events-none absolute -left-40 -top-40 h-[600px] w-[600px] rounded-full bg-emerald-500/10 blur-[160px]" />
+            <div className="relative min-h-screen bg-[#070A11] font-sans text-slate-100 selection:bg-emerald-500 selection:text-white">
+                {/* Background Ambient Glows */}
+                <div className="pointer-events-none absolute -left-40 -top-40 h-[600px] w-[600px] rounded-full bg-emerald-500/10 blur-[180px]" />
                 <div className="pointer-events-none absolute right-0 top-1/4 h-[700px] w-[700px] rounded-full bg-teal-500/10 blur-[180px]" />
                 <div className="pointer-events-none absolute left-1/3 bottom-10 h-[500px] w-[500px] rounded-full bg-indigo-500/10 blur-[160px]" />
 
@@ -36,6 +37,7 @@ export default function Welcome({ auth }) {
                         </span>
                     </Link>
 
+                    {/* Desktop Navigation Links */}
                     <nav className="hidden items-center gap-8 md:flex text-sm font-medium text-slate-400">
                         <a href="#demo" className="cursor-pointer transition-colors hover:text-emerald-400">Live AI Demo</a>
                         <a href="#features" className="cursor-pointer transition-colors hover:text-emerald-400">Features</a>
@@ -44,7 +46,8 @@ export default function Welcome({ auth }) {
                         <a href="#faq" className="cursor-pointer transition-colors hover:text-emerald-400">FAQ</a>
                     </nav>
 
-                    <div className="flex items-center gap-4">
+                    {/* Desktop Right Actions */}
+                    <div className="hidden md:flex items-center gap-4">
                         <FloatingCurrencyPicker />
                         {auth?.user ? (
                             <Link
@@ -70,7 +73,126 @@ export default function Welcome({ auth }) {
                             </>
                         )}
                     </div>
+
+                    {/* Mobile Hamburger Button */}
+                    <div className="flex items-center gap-3 md:hidden">
+                        <FloatingCurrencyPicker />
+                        <button
+                            type="button"
+                            onClick={() => setMobileMenuOpen(true)}
+                            className="cursor-pointer rounded-xl border border-slate-800 bg-slate-900/90 p-2.5 text-slate-300 hover:text-white focus:outline-none"
+                            aria-label="Open Mobile Menu"
+                        >
+                            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
                 </header>
+
+                {/* Mobile Right Slide-out Drawer Menu */}
+                {mobileMenuOpen && (
+                    <div className="fixed inset-0 z-50 md:hidden">
+                        {/* Dark Backdrop */}
+                        <div
+                            className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity"
+                            onClick={() => setMobileMenuOpen(false)}
+                        />
+
+                        {/* Right Sliding Drawer */}
+                        <div className="fixed inset-y-0 right-0 z-50 w-80 max-w-[85vw] bg-[#090d16]/95 border-l border-slate-800 p-6 shadow-2xl backdrop-blur-2xl flex flex-col justify-between transform transition-transform duration-300 ease-in-out">
+                            <div>
+                                {/* Drawer Header */}
+                                <div className="flex items-center justify-between pb-6 border-b border-slate-800/80">
+                                    <div className="flex items-center gap-2.5">
+                                        <ApplicationLogo className="h-9 w-9" />
+                                        <span className="text-lg font-black tracking-tight text-white">
+                                            FitNinja <span className="text-emerald-400">AI</span>
+                                        </span>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="cursor-pointer rounded-xl border border-slate-800 bg-slate-900 p-2 text-slate-400 hover:text-white"
+                                    >
+                                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                {/* Drawer Navigation Links */}
+                                <nav className="mt-6 flex flex-col gap-4 text-sm font-semibold">
+                                    <a
+                                        href="#demo"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="rounded-xl px-4 py-3 border border-slate-800/60 bg-slate-950/40 text-slate-200 hover:border-emerald-500/40 hover:text-emerald-400 transition-all"
+                                    >
+                                        ⚡ Live AI Demo
+                                    </a>
+                                    <a
+                                        href="#features"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="rounded-xl px-4 py-3 border border-slate-800/60 bg-slate-950/40 text-slate-200 hover:border-emerald-500/40 hover:text-emerald-400 transition-all"
+                                    >
+                                        🧠 Features & Engine
+                                    </a>
+                                    <a
+                                        href="#how-it-works"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="rounded-xl px-4 py-3 border border-slate-800/60 bg-slate-950/40 text-slate-200 hover:border-emerald-500/40 hover:text-emerald-400 transition-all"
+                                    >
+                                        🔄 How It Works
+                                    </a>
+                                    <a
+                                        href="#pricing"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="rounded-xl px-4 py-3 border border-slate-800/60 bg-slate-950/40 text-slate-200 hover:border-emerald-500/40 hover:text-emerald-400 transition-all"
+                                    >
+                                        💎 Pricing & Tokens
+                                    </a>
+                                    <a
+                                        href="#faq"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="rounded-xl px-4 py-3 border border-slate-800/60 bg-slate-950/40 text-slate-200 hover:border-emerald-500/40 hover:text-emerald-400 transition-all"
+                                    >
+                                        ❓ FAQ & Support
+                                    </a>
+                                </nav>
+                            </div>
+
+                            {/* Drawer Bottom Actions */}
+                            <div className="pt-6 border-t border-slate-800/80 space-y-3">
+                                {auth?.user ? (
+                                    <Link
+                                        href={route('dashboard')}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="cursor-pointer block w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 py-3.5 text-center text-sm font-bold text-white shadow-lg shadow-emerald-500/20"
+                                    >
+                                        Launch Dashboard →
+                                    </Link>
+                                ) : (
+                                    <>
+                                        <Link
+                                            href={route('register')}
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className="cursor-pointer block w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 py-3.5 text-center text-sm font-bold text-white shadow-lg shadow-emerald-500/25"
+                                        >
+                                            Get Started Free
+                                        </Link>
+                                        <Link
+                                            href={route('login')}
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className="cursor-pointer block w-full rounded-2xl border border-slate-700 bg-slate-800 py-3 text-center text-sm font-semibold text-slate-200 hover:bg-slate-700"
+                                        >
+                                            Log In
+                                        </Link>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {/* Hero Section */}
                 <section className="relative z-10 mx-auto max-w-7xl px-6 pt-12 pb-20 text-center lg:px-8 lg:pt-20">

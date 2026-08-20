@@ -128,51 +128,76 @@ export default function AuthenticatedLayout({ header, children }) {
                     </div>
                 </div>
 
-                <div
-                    className={
-                        (showingNavigationDropdown ? 'block' : 'hidden') +
-                        ' sm:hidden'
-                    }
-                >
-                    <div className="space-y-1 pb-3 pt-2">
-                        <ResponsiveNavLink
-                            href={route('dashboard')}
-                            active={route().current('dashboard')}
-                        >
-                            Dashboard
-                        </ResponsiveNavLink>
-                        <ResponsiveNavLink
-                            href={route('billing.index')}
-                            active={route().current('billing.index')}
-                        >
-                            💳 Tokens & Billing
-                        </ResponsiveNavLink>
-                    </div>
+                {/* Mobile Slide-out Drawer */}
+                {showingNavigationDropdown && (
+                    <div className="fixed inset-0 z-50 sm:hidden">
+                        <div
+                            className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm"
+                            onClick={() => setShowingNavigationDropdown(false)}
+                        />
 
-                    <div className="border-t border-gray-200 pb-1 pt-4 dark:border-gray-600">
-                        <div className="px-4">
-                            <div className="text-base font-medium text-gray-800 dark:text-gray-200">
-                                {user.name}
+                        <div className="fixed inset-y-0 right-0 z-50 w-80 max-w-[85vw] bg-[#090d16]/95 border-l border-slate-800 p-6 shadow-2xl backdrop-blur-2xl flex flex-col justify-between">
+                            <div>
+                                <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+                                    <div className="flex items-center gap-2.5">
+                                        <ApplicationLogo className="h-8 w-8" />
+                                        <span className="text-base font-black tracking-tight text-white">
+                                            FitNinja <span className="text-emerald-400">AI</span>
+                                        </span>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowingNavigationDropdown(false)}
+                                        className="cursor-pointer rounded-xl border border-slate-800 bg-slate-900 p-2 text-slate-400 hover:text-white"
+                                    >
+                                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div className="mt-6 space-y-2">
+                                    <ResponsiveNavLink
+                                        href={route('dashboard')}
+                                        active={route().current('dashboard')}
+                                        onClick={() => setShowingNavigationDropdown(false)}
+                                    >
+                                        📊 Dashboard & Analytics
+                                    </ResponsiveNavLink>
+                                    <ResponsiveNavLink
+                                        href={route('billing.index')}
+                                        active={route().current('billing.index')}
+                                        onClick={() => setShowingNavigationDropdown(false)}
+                                    >
+                                        💳 Tokens & Billing Store
+                                    </ResponsiveNavLink>
+                                    <ResponsiveNavLink
+                                        href={route('profile.edit')}
+                                        active={route().current('profile.edit')}
+                                        onClick={() => setShowingNavigationDropdown(false)}
+                                    >
+                                        👤 User Profile & Settings
+                                    </ResponsiveNavLink>
+                                </div>
                             </div>
-                            <div className="text-sm font-medium text-gray-500">
-                                {user.email}
+
+                            <div className="pt-4 border-t border-slate-800">
+                                <div className="mb-4">
+                                    <div className="text-sm font-bold text-white">{user.name}</div>
+                                    <div className="text-xs text-slate-400">{user.email}</div>
+                                </div>
+                                <ResponsiveNavLink
+                                    method="post"
+                                    href={route('logout')}
+                                    as="button"
+                                    className="w-full text-center bg-rose-500/10 text-rose-400 border border-rose-500/20"
+                                >
+                                    Log Out
+                                </ResponsiveNavLink>
                             </div>
                         </div>
-
-                        <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('profile.edit')}>
-                                Profile
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                method="post"
-                                href={route('logout')}
-                                as="button"
-                            >
-                                Log Out
-                            </ResponsiveNavLink>
-                        </div>
                     </div>
-                </div>
+                )}
             </nav>
 
             {header && (
